@@ -2,6 +2,31 @@
 # bummer : Metaclass for creating generic lazy objects
 #
 
+
+import bummer
+
+class Foo(object, metaclass=bummer.LazyMeta):
+
+    def __init__(self, index, value):
+        print("Hi, __init__ is being called!")
+        self.index = index
+        self.value = self.expensive_computation(value)
+    #enddef
+
+    def __lazy_preinit__(self, index, value):
+        print("__lazy_preinit__ is called first.")
+        self.index = index
+    #enddef
+
+    def expensive_computation(self, value):
+        print("Performing expensive computation.")
+        return len(repr(value)) % 42
+    #enddef
+    
+#endclass
+
+
+
 class LazyMeta(type):
     '''Metaclass for lazy instantiation.
     
@@ -138,7 +163,7 @@ class LazyFactoryMeta(LazyMeta):
         #enddef
         cls._lazy_factory_purge_key = classmethod(purge_key)
         def get_cache(cls):
-            return immdict(cls.__lazy_factory_cache)
+            return cls.__lazy_factory_cache
         #enddef
         cls._lazy_factory_get_cache = classmethod(get_cache)
     #enddef
