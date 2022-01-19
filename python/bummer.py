@@ -2,9 +2,6 @@
 # bummer : Metaclass for creating generic lazy objects
 #
 
-
-import bummer
-
 class LazyMeta(type):
     '''Metaclass for lazy instantiation.
     
