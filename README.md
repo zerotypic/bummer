@@ -114,3 +114,9 @@ at your own risk, and file bug reports if you find any!
 ## TODO
 
 * Document `LazyFactoryMeta` in README.
+
+## License
+
+MIT License
+
+See [LICENSE](/LICENSE) for full text.
