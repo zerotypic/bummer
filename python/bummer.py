@@ -5,28 +5,6 @@
 
 import bummer
 
-class Foo(object, metaclass=bummer.LazyMeta):
-
-    def __init__(self, index, value):
-        print("Hi, __init__ is being called!")
-        self.index = index
-        self.value = self.expensive_computation(value)
-    #enddef
-
-    def __lazy_preinit__(self, index, value):
-        print("__lazy_preinit__ is called first.")
-        self.index = index
-    #enddef
-
-    def expensive_computation(self, value):
-        print("Performing expensive computation.")
-        return len(repr(value)) % 42
-    #enddef
-    
-#endclass
-
-
-
 class LazyMeta(type):
     '''Metaclass for lazy instantiation.
     
